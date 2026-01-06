@@ -6,7 +6,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 
 const navLinks = [
-    { name: "Sobre", href: "#about" },
+    { name: "Sobre", href: "#sobre" },
     { name: "Serviços", href: "#services" },
     { name: "Diferenciais", href: "#differentials" },
     { name: "Localização", href: "#locations" },

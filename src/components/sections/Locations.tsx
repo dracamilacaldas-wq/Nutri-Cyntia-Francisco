@@ -1,7 +1,19 @@
 import { FadeIn } from "@/components/animations/FadeIn"
 import { MapPin, ArrowRight } from "lucide-react"
+import { useState } from "react"
+import { MapModal } from "@/components/ui/MapModal"
 
 export function Locations() {
+    const [selectedLocation, setSelectedLocation] = useState<{ city: string; address: string; mapUrl: string } | null>(null)
+
+    const handleOpenMap = (city: string, address: string, query: string) => {
+        setSelectedLocation({
+            city,
+            address,
+            mapUrl: `https://maps.google.com/maps?q=${encodeURIComponent(query)}&t=&z=15&ie=UTF8&iwloc=&output=embed`
+        })
+    }
+
     return (
         <section id="locations" className="py-24 bg-background px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto rounded-[2rem] md:rounded-[3rem] bg-zinc-50 border border-zinc-100 p-6 sm:p-8 md:p-16 overflow-hidden">
@@ -55,7 +67,10 @@ export function Locations() {
                         <div className="space-y-8 h-full flex flex-col justify-center">
                             <h2 className="text-2xl md:text-3xl font-bold tracking-tighter">Atendimento Presencial</h2>
                             <div className="grid gap-4 md:gap-6">
-                                <div className="group bg-white p-5 md:p-6 rounded-[1.5rem] border border-zinc-200 hover:border-[#D9F347] transition-all cursor-pointer">
+                                <div
+                                    onClick={() => handleOpenMap('Guarujá', 'Av. Manuel Albino, 463', 'Av. Manuel Albino, 463 - Guarujá')}
+                                    className="group bg-white p-5 md:p-6 rounded-[1.5rem] border border-zinc-200 hover:border-[#D9F347] transition-all cursor-pointer"
+                                >
                                     <div className="flex gap-4 items-start">
                                         <div className="p-3 bg-black text-white rounded-full group-hover:bg-[#D9F347] group-hover:text-black transition-colors shrink-0">
                                             <MapPin className="w-5 h-5 md:w-6 md:h-6" />
@@ -70,7 +85,10 @@ export function Locations() {
                                     </div>
                                 </div>
 
-                                <div className="group bg-white p-5 md:p-6 rounded-[1.5rem] border border-zinc-200 hover:border-[#D9F347] transition-all cursor-pointer">
+                                <div
+                                    onClick={() => handleOpenMap('Santos', 'Av. Ana Costa, 100', 'Av. Ana Costa, 100 - Santos')}
+                                    className="group bg-white p-5 md:p-6 rounded-[1.5rem] border border-zinc-200 hover:border-[#D9F347] transition-all cursor-pointer"
+                                >
                                     <div className="flex gap-4 items-start">
                                         <div className="p-3 bg-black text-white rounded-full group-hover:bg-[#D9F347] group-hover:text-black transition-colors shrink-0">
                                             <MapPin className="w-5 h-5 md:w-6 md:h-6" />
@@ -89,6 +107,12 @@ export function Locations() {
                     </FadeIn>
                 </div>
             </div>
+
+            <MapModal
+                isOpen={!!selectedLocation}
+                onClose={() => setSelectedLocation(null)}
+                location={selectedLocation}
+            />
         </section>
     )
 }

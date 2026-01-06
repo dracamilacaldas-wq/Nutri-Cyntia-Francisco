@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button"
 import { MessageCircle, Gift } from "lucide-react"
 import { FadeIn } from "@/components/animations/FadeIn"
+import { motion } from "motion/react"
+import LumoLogo from "@/assets/logo-lumo.svg"
 
 export function Footer() {
     return (
-        <footer className="bg-background pt-12 pb-6 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto bg-black text-white rounded-[1.5rem] md:rounded-[2.5rem] p-6 sm:p-8 md:p-16 relative overflow-hidden">
+        <footer className="bg-background -mt-12 md:mt-0 pt-0 pb-12 md:py-24 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto bg-black text-white rounded-[2.5rem] md:rounded-[3rem] px-8 pt-24 pb-16 md:p-16 relative overflow-hidden">
                 {/* Background glow */}
                 <div className="absolute top-0 right-0 w-96 h-96 bg-[#D9F347]/10 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3" />
 
@@ -50,11 +52,48 @@ export function Footer() {
                     </FadeIn>
                 </div>
 
-                <div className="mt-16 pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-4 text-zinc-500 text-sm">
-                    <p>© {new Date().getFullYear()} Cynthia Francisco Nutrição. Todos os direitos reservados.</p>
-                    <div className="flex gap-6">
-                        <a href="#" className="hover:text-[#D9F347] transition-colors">Instagram</a>
-                        <a href="#" className="hover:text-[#D9F347] transition-colors">LinkedIn</a>
+                <div className="mt-12 md:mt-20 pt-8 md:pt-10 border-t border-zinc-800/50">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8 md:mb-0">
+                        {/* Left: Social Links */}
+                        <div className="flex gap-8 order-2 md:order-1">
+                            <a href="https://www.instagram.com/nutricyntiafrancisco/" className="text-zinc-500 hover:text-[#D9F347] transition-all duration-300 text-xs font-medium uppercase tracking-wider">Instagram</a>
+                            <a href="#" className="text-zinc-500 hover:text-[#D9F347] transition-all duration-300 text-xs font-medium uppercase tracking-wider">LinkedIn</a>
+                        </div>
+
+                        {/* Right: Lumo Credit */}
+                        <a
+                            href="https://lumostudio.com.br"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2.5 opacity-70 hover:opacity-100 transition-all duration-500 group order-1 md:order-2"
+                        >
+                            <span className="text-[10px] tracking-widest text-zinc-500 group-hover:text-zinc-300 font-bold uppercase">Feito com</span>
+                            <motion.svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className="w-4 h-4 text-red-500/60 group-hover:text-red-500 transition-colors"
+                                animate={{ scale: [1, 1.2, 1] }}
+                                transition={{
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                            >
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </motion.svg>
+                            <span className="text-[10px] tracking-widest text-zinc-500 group-hover:text-zinc-300 font-bold uppercase">por</span>
+                            <img src={LumoLogo} alt="Lumo Studio" className="h-3.5 opacity-50 group-hover:opacity-100 transition-all grayscale brightness-200" />
+                        </a>
+                    </div>
+
+                    {/* Copyright Section */}
+                    <div className="mt-8 md:mt-6 text-center md:text-left">
+                        <p className="text-zinc-600 text-[10px] uppercase tracking-widest font-medium">
+                            © {new Date().getFullYear()} Cynthia Francisco Nutrição
+                            <span className="hidden md:inline mx-3 text-zinc-800">•</span>
+                            <span className="block md:inline mt-2 md:mt-0">Todos os direitos reservados</span>
+                        </p>
                     </div>
                 </div>
             </div>
